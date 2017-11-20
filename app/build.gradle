@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    flatDir {
-        dirs 'libs'
+    maven {
+        url 'https://google.bintray.com/tensorflow'
     }
 }
 
@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 dependencies {
@@ -32,6 +35,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile name: 'tensorflow', ext: 'aar'
     testCompile 'junit:junit:4.12'
+    compile 'org.tensorflow:tensorflow-lite:0.1.1'
 }
